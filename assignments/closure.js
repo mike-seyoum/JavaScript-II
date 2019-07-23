@@ -1,6 +1,13 @@
 // ==== Challenge 1: Write your own closure ====
 // Write a simple closure of your own creation.  Keep it simple!
-
+const state = ("Miami") => {
+  let count =0;
+  count = "Miami" + 2;
+  return count;
+};
+console.log(state());
+console.log(state());
+console.log(state());
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 

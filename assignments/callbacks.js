@@ -1,6 +1,6 @@
 // Create a higher order function and invoke the callback function to test your work. You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
 
-const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
+// const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
 /* 
 
@@ -9,7 +9,7 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   function firstItem(arr, cb) {
     // firstItem passes the first item of the given array to the callback function.
   }
-
+  
   // Potential Solution:
 
   // Higher order function using "cb" as the call back
@@ -28,23 +28,71 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
 }
+const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
+
+const firstItem = (arr, cb) => {
+  cb(arr[0]);
+};
+firstItem(items, firstItem => {
+  console.log(`The first item is ${firstItem}.`);
+});
+
+const getLength = (arr, cb) => {
+  cb(arr.length);
+};
+getLength(items, length => {
+  console.log(`The length of the array is ${length}.`);
+});
+==========================================================================
 
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
 }
-
+const last = (arr, cb) => {
+  cb(arr[arr.length - 1]);
+};
+last(items, lastItem => {
+  console.log(`The last item in the array is ${lastItem}.`);
+});
+============================================================================
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
 }
+const sumNums = (x, y, cb) => {
+  cb(x + y);
+};
+sumNums(20, 30, sum => {
+  console.log(`The sum is ${sum}.`);
+});
+
 
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
 }
+const multiplyNums = (x, y, cb) => {
+  cb(x * y);
+};
+multiplyNums(20, 30, product => {
+  console.log(`The product is ${product}.`);
+});
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
 }
+const contains = (arr, str, cb) => {
+  const isInArray = () => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === str) {
+        return true;
+      }
+    } return false;
+  };
+  cb(isInArray());
+};
+contains(items, 'yo-yo', result => {
+  console.log(result ? 'yo-yo is in the array' : 'yo-yo is not in the array');
+});
 
 /* STRETCH PROBLEM */
 
@@ -53,3 +101,10 @@ function removeDuplicates(array, cb) {
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
 }
+const removeDuplicates = (arr, cb) => {
+  var mySet = new Set(arr);
+  cb([...mySet]);
+};
+removeDuplicates(items, uniqueitems => {
+  console.log(`items with duplicates removed: ${uniqueitems}`);
+});
